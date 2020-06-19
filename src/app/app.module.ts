@@ -1,11 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 // Rutas
 import { AppRoutingModule } from './app.routes';
 
 // Módulos
 import { PagesModule } from './pages/pages.module';
+
+// Servicios
+import { ServiceModule } from './services/service.module';
 
 // Componentes
 import { AppComponent } from './app.component';
@@ -21,7 +25,9 @@ import { RegisterComponent } from './register/register.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    PagesModule
+    PagesModule,
+    FormsModule,
+    ServiceModule
   ],
   providers: [],
   bootstrap: [AppComponent]
