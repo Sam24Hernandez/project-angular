@@ -1,1 +1,160 @@
-<p>dashboard works!</p>
+<!-- ============================================================== -->
+<!-- Sales overview chart -->
+<!-- ============================================================== -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="flex-item">
+                    <table class="table table-responsive table-condensed">
+                        <tr>
+                            <th *ngFor="let label of lineChartLabels">{{label}}</th>
+                        </tr>
+                        <tr *ngFor="let d of lineChartData; let i=index" [class]="'line-'+i">
+                            <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="flex-item">
+                    <div style="display: block;">
+                        <canvas baseChart width="400" height="400" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- Stats box -->
+<!-- ============================================================== -->
+
+<!-- ============================================================== -->
+<!-- visit charts-->
+<!-- ============================================================== -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title"><span class="lstick"></span>{{ graficos.grafico1.leyenda }}</h4>
+                <app-grafica-dona [chartLabels]="graficos.grafico1.labels" [chartData]="graficos.grafico1.data" chartType="doughnut"></app-grafica-dona>
+            </div>
+        </div>
+    </div>
+    <!--Registros-->
+
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex">
+                    <div class="m-r-20 align-self-center"><img src="assets/images/icon/income.png" alt="Ingresos"></div>
+                    <div class="align-self-center">
+                        <h6 class="text-muted m-t-10 m-b-0">Ingresos Totales</h6>
+                        <h2 class="m-t-0">$953,000</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex">
+                    <div class="m-r-20 align-self-center"><img src="assets/images/icon/expense.png" alt="Ingresos"></div>
+                    <div class="align-self-center">
+                        <h6 class="text-muted m-t-10 m-b-0">Trabajos Totales</h6>
+                        <h2 class="m-t-0">236,000</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex">
+                    <div class="m-r-20 align-self-center"><img src="assets/images/icon/assets.png" alt="Ingresos"></div>
+                    <div class="align-self-center">
+                        <h6 class="text-muted m-t-10 m-b-0">Visitas Totales</h6>
+                        <h2 class="m-t-0">987,563</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex">
+                    <div class="m-r-20 align-self-center"><img src="assets/images/icon/staff.png" alt="Ingresos"></div>
+                    <div class="align-self-center">
+                        <h6 class="text-muted m-t-10 m-b-0">Registros Totales</h6>
+                        <h2 class="m-t-0">{{totalRegistros}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- ============================================================== -->
+<!--APP DE TASK TO DO-->
+<!-- ============================================================== -->
+<div class="row">
+    <div class="col-lg-8 col-xlg-9">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex no-block">
+                    <div>
+                        <h4 class="card-title"><span class="lstick"></span>Lista de Trabajos por Hacer</h4>
+                        <h6 class="card-subtitle">Lista de su próximo trabajo para completar</h6>
+                    </div>
+                    <div class="ml-auto">
+                        <button [routerLink]="['/trabajo','nuevo']" type="button" class="pull-right btn btn-sm btn-rounded btn-success">
+                            <i class="fa fa-plus"></i> 
+                            Añadir Trabajo
+                        </button>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- To do list widgets -->
+                <!-- ============================================================== -->
+                <div class="to-do-widget m-t-20">
+                    <ul class="list-task todo-list list-group m-b-0" data-role="tasklist">
+                        <li class="list-group-item" data-role="task" *ngFor="let task of tasks">
+                            <div class="checkbox checkbox-info">
+                                <label class=""> <span>{{task.nombre}}</span> </label>
+                                <button style="margin-top: -35px;" (click)="borrarTarea( task )" type="button" class="btn btn-danger pull-right">                                         
+                                    <i class="fa fa-trash-o"></i>
+                                 </button>
+                                <button style="margin-top: -35px;" [routerLink]="['/trabajo', task._id ]" type="button" class="btn btn-primary pull-right">
+                                    <i class="fa fa-edit"></i>
+                                 </button>
+                            </div>
+                            <div class="item-date">
+                                {{task.created_at | amFromUnix | amLocale: 'es' | amTimeAgo}}
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--BANNER DE ANUNCIO PUBLICITARIO-->
+    <div class="col-lg-4 col-xlg-3">
+        <div class="card">
+            <img class="card-img-top img-responsive" src="assets/images/big/img1.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h3 class="font-normal">Featured Hydroflora Pots Garden &amp; Outdoors</h3>
+                <span class="label label-info label-rounded">Technology</span>
+                <p class="m-b-0 m-t-20">Titudin venenatis ipsum aciat. Vestibulum ullamcorper quam. nenatis ipsum ac feugiat. Ibulum ullamcorper</p>
+                <div class="d-flex m-t-20">
+                    <button class="btn p-l-0 btn-link ">Read more</button>
+                    <div class="ml-auto align-self-center">
+                        <a href="javascript:void(0)" class="link m-r-10"><i class="fa fa-heart-o"></i></a>
+                        <a href="javascript:void(0)" class="link m-r-10"><i class="fa fa-share-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

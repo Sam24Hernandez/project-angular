@@ -8,6 +8,7 @@ import { PagesRoutingModule } from './pages.routes';
 
 // Módulo
 import { SharedModule } from '../shared/shared.module';
+import { MomentModule } from 'angular2-moment';
 
 // Componentes
 import { ProgressComponent } from './progress/progress.component';
@@ -19,34 +20,31 @@ import { PagesComponent } from './pages.component';
 import { PipesModule } from '../pipes/pipes.module';
 
 import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
-import { PromesasComponent } from './promesas/promesas.component';
 import { GraficaDonaComponent } from '../components/grafica-dona/grafica-dona.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
-import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
-import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 import { HospitalesComponent } from './hospitales/hospitales.component';
 import { MedicosComponent } from './medicos/medicos.component';
 import { MedicoComponent } from './medicos/medico.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
+import { TaskComponent } from './dashboard/task/task.component';
 
 @NgModule({
     declarations: [
-        PagesComponent,
         DashboardComponent,
         ProgressComponent,
         Graficas1Component,
         IncrementadorComponent,
         GraficaDonaComponent,
         AccountSettingsComponent,
-        PromesasComponent,
-        RxjsComponent,
         ProfileComponent,
         UsuariosComponent,
-        ModalUploadComponent,
         HospitalesComponent,
         MedicosComponent,
-        MedicoComponent
+        MedicoComponent,
+        BusquedaComponent,
+        TaskComponent
     ],
     exports: [
         DashboardComponent,
@@ -59,7 +57,8 @@ import { MedicoComponent } from './medicos/medico.component';
         PagesRoutingModule,
         FormsModule,
         ChartsModule,
-        PipesModule
+        PipesModule,
+        MomentModule
     ]
   })
   export class PagesModule { }

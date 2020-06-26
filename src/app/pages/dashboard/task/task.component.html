@@ -1,0 +1,26 @@
+<div class="row animated fadeIn">
+
+    <div class="col-12">
+        <div class="card card-body">
+            <h3 class="box-title m-b-0">Trabajo</h3>
+            <h6 class="card-subtitle">When initializing a typeahead, you pass the plugin method one or more datasets. The source of a dataset is responsible for computing a set of suggestions for a given query.</h6>
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <form #f="ngForm" ngNativeValidate (ngSubmit)="guardarTarea(f)">
+
+                        <div class="form-group">
+                            <label>Nombre del trabajo</label>
+                            <input [(ngModel)]="task.nombre" name="nombre" type="text" class="form-control" placeholder="Nombre del trabajo" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">
+                          <i class="fa fa-save"></i>
+                          Guardar
+                        </button>
+                        <a routerLink="/dashboard" class="btn btn-inverse waves-effect waves-light">Cancelar</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
